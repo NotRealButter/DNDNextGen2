@@ -20,6 +20,18 @@
 
     <string name="menu_init">Welcome to DND Next Gen</string>
 
+    <string-array name="alignment_array">
+        <item>Lawful Good</item>
+        <item>Neutral Good</item>
+        <item>Chaotic Good</item>
+        <item>Lawful Neutral</item>
+        <item>True Neutral</item>
+        <item>Chaotic Neutral</item>
+        <item>Lawful Evil</item>
+        <item>Neutral Evil</item>
+        <item>Chaotic Evil</item>
+    </string-array>
+
     <string-array name="race_array">
         <item>human</item>
         <item>elf</item>
@@ -51,6 +63,8 @@
     <string name="title_activity_double_drawer">DoubleDrawerActivity</string>
     <string name="title_activity_view_character">ViewCharacter</string>
     <string name="title_activity_import_character">ImportCharacter</string>
+    <string name="title_activity_char_create">CharCreateActivity</string>
+    <string name="create_character">Create Character</string>
 
 
 </resources>

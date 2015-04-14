@@ -28,7 +28,7 @@ public class myActionBarDrawerToggle extends ActionBarDrawerToggle {
     public void onDrawerClosed(View drawerView)
     {
             super.onDrawerClosed(drawerView);
-            mActivity.setTitle(R.string.menu_init);
+//            mActivity.setTitle(R.string.menu_init);
 //            mActivity.invalidateOptionsMenu();
 
 
