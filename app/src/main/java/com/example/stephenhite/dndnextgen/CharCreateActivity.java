@@ -5,15 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.stephenhite.dndnextgen.Fragments.CharacterCreateFragment;
+import com.example.stephenhite.dndnextgen.Fragments.RaceFragment;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class CharCreateActivity extends ActionBarActivity {
     ListView mRightDrawer;
 
     DrawerLayout mDrawerLayout;
-    myActionBarDrawerToggle mDrawerToggle;
+    ActionBarDrawerToggle mDrawerToggle;
 
     Button createCharacter;
 
@@ -70,14 +70,12 @@ public class CharCreateActivity extends ActionBarActivity {
                 fragmentManager.beginTransaction().replace(R.id.container, CharacterCreateFragment.newInstance("match_parent", "match_parent"), "title_section_2")
                         .commit();
                 break;
-//            case 1:
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.container, RaceFragment.newInstance("match_parent", "match_parent"), "title_section_1")
-//                        .commit();
-//                break;
+            case 1:
+                fragmentManager.beginTransaction().replace(R.id.container, RaceFragment.newInstance("match_parent", "match_parent"), "title_section_1")
+                        .commit();
+                break;
 //            case 2:
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.container, ViewCharacterFragment.newInstance("match_parent", "match_parent"), "title_section_2")
+//                fragmentManager.beginTransaction().replace(R.id.container, ViewCharacterFragment.newInstance("match_parent", "match_parent"), "title_section_2")
 //                        .commit();
 //            case 3:
 //
@@ -142,7 +140,7 @@ public class CharCreateActivity extends ActionBarActivity {
         mCreationItems.add(new NavItem("Class", "Who Is Your Daddy, What does he do?"));
         mCreationItems.add(new NavItem("Ability Score", "Do you Even Lift?"));
 
-        mDrawerToggle = new myActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
 
         mLeftAdapter = new DrawerListAdapter(this, mNavigationItems);
         mRightAdapter = new DrawerListAdapter(this, mCreationItems);
@@ -152,18 +150,8 @@ public class CharCreateActivity extends ActionBarActivity {
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, mRightDrawer);
-        mLeftDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItemFromLeftDrawer(position);
-            }
-        });
-        mRightDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItemFromRightDrawer(position);
-            }
-        });
+        mLeftDrawer.setOnItemClickListener((parent, view, position, id) -> selectItemFromLeftDrawer(position));
+        mRightDrawer.setOnItemClickListener((parent, view, position, id) -> selectItemFromRightDrawer(position));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

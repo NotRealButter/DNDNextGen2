@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,7 +29,7 @@ public class MainActivity extends ActionBarActivity
     ListView mRightDrawer;
 
     DrawerLayout mDrawerLayout;
-    myActionBarDrawerToggle mDrawerToggle;
+    ActionBarDrawerToggle mDrawerToggle;
 
     MenuFragment menuFragment;
 
@@ -49,16 +48,11 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings)
-        {
-            return true;
-        }
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
-        return super.onOptionsItemSelected(item);
     }
 
     private void selectItemFromLeftDrawer(int position)
@@ -153,7 +147,7 @@ public class MainActivity extends ActionBarActivity
         mCreationItems.add(new NavItem("Class", "Who Is Your Daddy, What does he do?"));
         mCreationItems.add(new NavItem("Ability Score", "Do you Even Lift?"));
 
-        mDrawerToggle= new myActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
 
         mLeftAdapter = new DrawerListAdapter(this, mNavigationItems);
         mRightAdapter = new DrawerListAdapter(this, mCreationItems);
@@ -163,20 +157,13 @@ public class MainActivity extends ActionBarActivity
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, mRightDrawer);
-        mLeftDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {selectItemFromLeftDrawer(position);}
-        });
-        mRightDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItemFromRightDrawer(position);
-            }
-        });
+        mLeftDrawer.setOnItemClickListener((parent, view, position, id) -> selectItemFromLeftDrawer(position));
+        mRightDrawer.setOnItemClickListener((parent, view, position, id) -> selectItemFromRightDrawer(position));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+        mDrawerToggle.syncState();
+
     }
 }

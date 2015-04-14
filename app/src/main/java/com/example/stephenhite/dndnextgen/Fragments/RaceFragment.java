@@ -10,13 +10,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.stephenhite.dndnextgen.R;
 
-
-/**
- * Created by Stephen Hite on 3/29/2015.
- */
 public class RaceFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -61,30 +58,43 @@ public class RaceFragment extends Fragment implements AdapterView.OnItemSelected
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
         ImageView image = (ImageView) getView().findViewById(R.id.race_picture);
+        TextView description = (TextView) getView().findViewById(R.id.race_description);
         switch (position) {
-            case 1:
+            case 0:
+                description.setText(R.string.human_text);
                 image.setImageResource(R.drawable.human);
                 break;
-            case 2:
+            case 1:
+                description.setText(R.string.elf_text);
                 image.setImageResource(R.drawable.elf);
                 break;
-            case 3:
+            case 2:
                 image.setImageResource(R.drawable.halfling);
+                description.setText(R.string.halfling_text);
+                break;
+            case 3:
+                image.setImageResource(R.drawable.halforc);
+                description.setText(R.string.half_orc_text);
                 break;
             case 4:
-                image.setImageResource(R.drawable.halforc);
+                image.setImageResource(R.drawable.halfelf);
+                description.setText(R.string.half_elf_text);
                 break;
             case 5:
+                description.setText(R.string.dwarf_text);
                 image.setImageResource(R.drawable.dwarf);
                 break;
             case 6:
-                image.setImageResource(R.drawable.gnome);
+                description.setText(R.string.tiefling_text);
+                image.setImageResource(R.drawable.tiefling);
                 break;
             case 7:
-                image.setImageResource(R.drawable.elf);
+                description.setText(R.string.eladrin_text);
+                image.setImageResource(R.drawable.eladrin);
                 break;
             case 8:
-                image.setImageResource(R.drawable.halforc);
+                image.setImageResource(R.drawable.dragonborn);
+                description.setText(R.string.dragon_born_text);
                 break;
         }
     }
