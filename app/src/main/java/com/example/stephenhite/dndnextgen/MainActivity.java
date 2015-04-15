@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -50,9 +52,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
-
     }
 
     private void selectItemFromLeftDrawer(int position)
@@ -79,36 +79,6 @@ public class MainActivity extends ActionBarActivity
 //                startActivity(importIntent);
 //                finish();
         }
-
-        mRightDrawer.setItemChecked(position, true);
-        setTitle(mNavigationItems.get(position).mTitle);
-        mDrawerLayout.closeDrawer(mLeftDrawer);
-    }
-
-    private void selectItemFromRightDrawer(int position)
-    {
-        FragmentManager fragmentManager = getFragmentManager();
-
-//        switch (position) {
-//            case 0:
-//
-//                fragmentManager.beginTransaction().replace(R.id.container, CharacterCreateFragment.newInstance("match_parent", "match_parent"), "title_section_2")
-//                        .commit();
-//                break;
-//            case 1:
-//
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.container, RaceFragment.newInstance("match_parent", "match_parent"), "title_section_1").commit();
-//                break;
-//            case 2:
-//
-//                fragmentManager.beginTransaction().replace(R.id.container, ViewCharacterFragment.newInstance("match_parent", "match_parent"), "title_section_2")
-//                        .commit();
-//            case 3:
-//
-//                fragmentManager.beginTransaction().replace(R.id.container, ImportCharacterFragment.newInstance("match_parent", "match_parent"), "title_section_2")
-//                        .commit();
-//        }
 
         mRightDrawer.setItemChecked(position, true);
         setTitle(mNavigationItems.get(position).mTitle);
@@ -157,13 +127,16 @@ public class MainActivity extends ActionBarActivity
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED, mRightDrawer);
-        mLeftDrawer.setOnItemClickListener((parent, view, position, id) -> selectItemFromLeftDrawer(position));
-        mRightDrawer.setOnItemClickListener((parent, view, position, id) -> selectItemFromRightDrawer(position));
+        mLeftDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItemFromLeftDrawer(position);
+            }
+        });
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         mDrawerToggle.syncState();
-
     }
 }

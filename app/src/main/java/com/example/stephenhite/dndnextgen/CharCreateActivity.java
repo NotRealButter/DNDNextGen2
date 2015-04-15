@@ -8,10 +8,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.stephenhite.dndnextgen.CreatorLogic.CreatorCntl;
+import com.example.stephenhite.dndnextgen.CreatorLogic.UserCharacter;
 import com.example.stephenhite.dndnextgen.Fragments.CharacterCreateFragment;
 import com.example.stephenhite.dndnextgen.Fragments.RaceFragment;
 
@@ -32,6 +36,8 @@ public class CharCreateActivity extends ActionBarActivity {
     ActionBarDrawerToggle mDrawerToggle;
 
     Button createCharacter;
+
+    CreatorCntl creatorCntl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,12 +156,30 @@ public class CharCreateActivity extends ActionBarActivity {
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, mRightDrawer);
-        mLeftDrawer.setOnItemClickListener((parent, view, position, id) -> selectItemFromLeftDrawer(position));
-        mRightDrawer.setOnItemClickListener((parent, view, position, id) -> selectItemFromRightDrawer(position));
-
+        mLeftDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItemFromLeftDrawer(position);
+            }
+        });
+        mRightDrawer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItemFromRightDrawer(position);
+            }
+        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
+        UserCharacter character = new UserCharacter();
+        creatorCntl = new CreatorCntl();
+
+        createCharacter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                creatorCntl.saveCharacter();
+            }
+        });
     }
 }

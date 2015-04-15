@@ -1,9 +1,11 @@
 package com.example.stephenhite.dndnextgen.CreatorLogic;
 
+import java.io.Serializable;
+
 /**
  * Created by Stephen Hite on 4/5/2015.
  */
-public class InGameClass
+public class InGameClass implements Serializable
 {
     private String name;
     private int classID;
@@ -31,6 +33,7 @@ public class InGameClass
     String witchText;
 
     InGameClass alchemist, barbarian,bard,cavalier,cleric,druid,fighter,gunslinger,inquisitor,magus,monk,oracle,paladin,ranger,rogue,sorceror,summoner,wizard,witch;
+
     InGameClass(String name, int classID, String description) {
         this.name = name;
         this.classID = classID;
