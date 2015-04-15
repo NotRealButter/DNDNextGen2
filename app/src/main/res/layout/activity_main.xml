@@ -37,6 +37,15 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
         android:background="#ff3a8b88" />
+    <!--<Button-->
+    <!--android:background="#ff3a8b88"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:id="@+id/button1"-->
+    <!--android:text="Create Character"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:onClick="HandleCreateCharacter"-->
+    <!--/>-->
 
 
 </android.support.v4.widget.DrawerLayout>

@@ -10,7 +10,7 @@ public class UserCharacter implements Serializable {
     private int age;
     private String gender;
     private String alignment;
-    private Race race;
+    private String race;
     private int height;
     private int weight;
     private int strVal;
@@ -31,7 +31,7 @@ public class UserCharacter implements Serializable {
         age = 30;
         gender = "Female";
         alignment = "True Neutral";
-        race = race.getHuman();
+        race = "human";
         height = 68;
         weight = 120;
         strVal = 15;
@@ -152,36 +152,36 @@ public class UserCharacter implements Serializable {
         this.alignment = alignment;
     }
 
-    public Race getRace() {
-        return race;
-    }
-
-    public void setRace(String selectedRace) {
-        switch (selectedRace.toLowerCase()) {
-            case "human":
-                this.race = race.getHuman();
-            case "elf":
-                this.race = race.getElf();
-            case "halfElf":
-                this.race = race.getHalfElf();
-            case "halfOrc":
-                this.race = race.getHalfOrc();
-            case "aasimar":
-                this.race = race.getAasimar();
-            case "halfling":
-                this.race = race.getHalfling();
-            case "tiefling":
-                this.race = race.getTiefling();
-            case "dragonborn":
-                this.race = race.getDragonborn();
-            case "dwarf":
-                this.race = race.getDwarf();
-            case "gnome":
-                this.race = race.getGnome();
-            default:
-                this.race = race.getHuman();
-        }
-    }
+//    public Race getRace() {
+//        return race;
+//    }
+//
+//    public void setRace(String selectedRace) {
+//        switch (selectedRace.toLowerCase()) {
+//            case "human":
+//                this.race = race.getHuman();
+//            case "elf":
+//                this.race = race.getElf();
+//            case "halfElf":
+//                this.race = race.getHalfElf();
+//            case "halfOrc":
+//                this.race = race.getHalfOrc();
+//            case "aasimar":
+//                this.race = race.getAasimar();
+//            case "halfling":
+//                this.race = race.getHalfling();
+//            case "tiefling":
+//                this.race = race.getTiefling();
+//            case "dragonborn":
+//                this.race = race.getDragonborn();
+//            case "dwarf":
+//                this.race = race.getDwarf();
+//            case "gnome":
+//                this.race = race.getGnome();
+//            default:
+//                this.race = race.getHuman();
+//        }
+//    }
 
     public int getHeight() {
         return height;

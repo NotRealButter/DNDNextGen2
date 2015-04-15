@@ -80,6 +80,8 @@ public class CharCreateActivity extends ActionBarActivity {
                 fragmentManager.beginTransaction().replace(R.id.container, RaceFragment.newInstance("match_parent", "match_parent"), "title_section_1")
                         .commit();
                 break;
+            case 4:
+                creatorCntl.saveCharacter();
 //            case 2:
 //                fragmentManager.beginTransaction().replace(R.id.container, ViewCharacterFragment.newInstance("match_parent", "match_parent"), "title_section_2")
 //                        .commit();
@@ -145,6 +147,7 @@ public class CharCreateActivity extends ActionBarActivity {
         mCreationItems.add(new NavItem("Race", "Humans, Elves and Gnomes, oh my!"));
         mCreationItems.add(new NavItem("Class", "Who Is Your Daddy, What does he do?"));
         mCreationItems.add(new NavItem("Ability Score", "Do you Even Lift?"));
+        mCreationItems.add(new NavItem("Create Character", "Don't hit this til you're done"));
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close);
 
@@ -174,12 +177,9 @@ public class CharCreateActivity extends ActionBarActivity {
 
         UserCharacter character = new UserCharacter();
         creatorCntl = new CreatorCntl();
+    }
 
-        createCharacter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                creatorCntl.saveCharacter();
-            }
-        });
+    public void HandleCreateCharacter(View view) {
+        creatorCntl.saveCharacter();
     }
 }

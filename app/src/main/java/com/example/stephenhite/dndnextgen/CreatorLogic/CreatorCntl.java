@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
  * Created by Stephen Hite on 4/14/2015.
  */
 public class CreatorCntl {
-    UserCharacter userCharacter;
+    UserCharacter userCharacter = new UserCharacter();
 
     private final String charFilePath = "character_saves";
     private String charID = "char" + userCharacter.getName();
@@ -21,6 +21,7 @@ public class CreatorCntl {
         FileInputStream saveInput = null;
         ObjectInputStream charInput = null;
         String filePath = charFilePath + charID + fileExt;
+
         try {
             File f = new File(filePath);
             if (f.exists()) {
@@ -41,6 +42,7 @@ public class CreatorCntl {
         FileOutputStream saveOutput = null;
         ObjectOutputStream charOutput = null;
         String filePath = charFilePath + charID + fileExt;
+
         try {
             saveOutput = new FileOutputStream(filePath);
             charOutput = new ObjectOutputStream(saveOutput);
